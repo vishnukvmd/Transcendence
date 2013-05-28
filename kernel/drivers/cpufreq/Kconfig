@@ -118,6 +118,13 @@ config CPU_FREQ_DEFAULT_GOV_PEGASUSQ
 	bool "pegasusq"
 	select CPU_FREQ_GOV_PEGASUSQ
 
+config CPU_FREQ_DEFAULT_GOV_WHEATLEY
+	bool "wheatley"
+	select CPU_FREQ_GOV_WHEATLEY
+ 	select CPU_FREQ_GOV_PERFORMANCE
+    	help
+     	 Use the CPUFreq governor 'wheatley' as default.
+
 config CPU_FREQ_DEFAULT_GOV_HOTPLUG
 	bool "hotplug"
 	select CPU_FREQ_GOV_HOTPLUG
@@ -283,6 +290,9 @@ config CPU_FREQ_GOV_INTERACTIVE
 config CPU_FREQ_GOV_PEGASUSQ
 	tristate "'pegasusq' cpufreq policy governor"
 
+config CPU_FREQ_GOV_WHEATLEY
+	tristate "'wheatley' cpufreq governor"
+	depends on CPU_FREQ
 
 config CPU_FREQ_GOV_HOTPLUG
        tristate "'hotplug' cpufreq governor"
@@ -353,4 +363,5 @@ endmenu
 
 endif
 endmenu
+
 
