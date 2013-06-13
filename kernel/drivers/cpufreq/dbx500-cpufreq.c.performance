@@ -44,10 +44,6 @@ static struct cpufreq_frequency_table db8500_freq_table[] = {
 		.index = 6,
 		.frequency = CPUFREQ_TABLE_END,
 	},
-	[7] = {
-		.index = 7,
-		.frequency = CPUFREQ_TABLE_END,
-	},
 };
 
 static struct cpufreq_frequency_table db5500_freq_table[] = {
@@ -79,7 +75,6 @@ static enum arm_opp db8500_idx2opp[] = {
 	ARM_100_OPP,
 	ARM_MAX_OPP,	
 	ARM_MAX_OPP,
-	ARM_MAX_OPP
 };
 
 static enum arm_opp db5500_idx2opp[] = {
@@ -179,8 +174,8 @@ static void __init dbx500_cpufreq_init_maxopp_freq(void)
 	case PRCMU_FW_PROJECT_U8500:
 	case PRCMU_FW_PROJECT_U9500:
 	case PRCMU_FW_PROJECT_U8420:
-		freq_table[5].frequency = 1100000;
-		freq_table[6].frequency = 1200000;
+		freq_table[5].frequency = 1150000;
+		//freq_table[6].frequency = 1150000;
 		break;
 	case PRCMU_FW_PROJECT_U8500_C2:
 	case PRCMU_FW_PROJECT_U9500_C2:
