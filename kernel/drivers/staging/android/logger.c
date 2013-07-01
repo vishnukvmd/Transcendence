@@ -37,7 +37,7 @@
  * mutex 'mutex'.
  */
 struct logger_log {
-	unsigned char		*buffer;/* the ring buffer itself */
+	unsigned char 		*buffer;/* the ring buffer itself */
 	struct miscdevice	misc;	/* misc device representing the log */
 	wait_queue_head_t	wq;	/* wait queue for readers */
 	struct list_head	readers; /* this log's readers */
@@ -69,9 +69,9 @@ struct logger_reader {
  *
  * This isn't aesthetic. We have several goals:
  *
- *	1) Need to quickly obtain the associated log during an I/O operation
- *	2) Readers need to maintain state (logger_reader)
- *	3) Writers need to be very fast (open() should be a near no-op)
+ * 	1) Need to quickly obtain the associated log during an I/O operation
+ * 	2) Readers need to maintain state (logger_reader)
+ * 	3) Writers need to be very fast (open() should be a near no-op)
  *
  * In the reader case, we can trivially go file->logger_reader->logger_log.
  * For a writer, we don't want to maintain a logger_reader, so we just go
@@ -235,9 +235,9 @@ static size_t get_next_entry_by_uid(struct logger_log *log,
  *
  * Behavior:
  *
- *	- O_NONBLOCK works
- *	- If there are no log entries to read, blocks until log is written to
- *	- Atomically reads exactly one log entry
+ * 	- O_NONBLOCK works
+ * 	- If there are no log entries to read, blocks until log is written to
+ * 	- Atomically reads exactly one log entry
  *
  * Will set errno to EINVAL if read
  * buffer is insufficient to hold next entry.
@@ -702,10 +702,10 @@ static struct logger_log VAR = { \
 	.size = SIZE, \
 };
 
-DEFINE_LOGGER_DEVICE(log_main, LOGGER_LOG_MAIN, 256*1024)
-DEFINE_LOGGER_DEVICE(log_events, LOGGER_LOG_EVENTS, 256*1024)
-DEFINE_LOGGER_DEVICE(log_radio, LOGGER_LOG_RADIO, 256*1024)
-DEFINE_LOGGER_DEVICE(log_system, LOGGER_LOG_SYSTEM, 256*1024)
+DEFINE_LOGGER_DEVICE(log_main, LOGGER_LOG_MAIN, 64*1024)
+DEFINE_LOGGER_DEVICE(log_events, LOGGER_LOG_EVENTS, 32*1024)
+DEFINE_LOGGER_DEVICE(log_radio, LOGGER_LOG_RADIO, 32*1024)
+DEFINE_LOGGER_DEVICE(log_system, LOGGER_LOG_SYSTEM, 64*1024)
 
 static struct logger_log *get_log_from_minor(int minor)
 {
