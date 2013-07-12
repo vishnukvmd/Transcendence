@@ -105,12 +105,6 @@ config CPU_FREQ_DEFAULT_GOV_SMARTASS2
        select CPU_FREQ_GOV_SMARTASS2
        help
         Use the CPUFreq governor 'smartassV2' as default.
-        
-config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
-       bool "smartassH3"
-       select CPU_FREQ_GOV_SMARTASSH3
-       help
-        Use the CPUFreq governor 'SmartassH3' as default.
 
 config CPU_FREQ_DEFAULT_GOV_INTERACTIVE
        bool "interactive"
@@ -157,6 +151,13 @@ config CPU_FREQ_DEFAULT_GOV_MINMAX
 	  frequency jumps does by the governor. This is aimed at maximizing
 	  both perfomance and battery life.
 
+config CPU_FREQ_DEFAULT_GOV_INTELLIDEMAND
+	bool "intellidemand"
+	select CPU_FREQ_GOV_INTELLIDEMAND
+    	select CPU_FREQ_GOV_PERFORMANCE
+    	help
+     	  Intelligent OnDemand Govneror based on Samsung Patched OnDemand
+
 config CPU_FREQ_DEFAULT_GOV_HOTPLUG
 	bool "hotplug"
 	select CPU_FREQ_GOV_HOTPLUG
@@ -170,10 +171,11 @@ config CPU_FREQ_DEFAULT_GOV_HOTPLUG
 	  the help section of the driver. Fallback governor will be the
 	  performance governor.
 
-config CPU_FREQ_DEFAULT_GOV_LULZACTIVEQ
-	bool "lulzactiveq"
-	select CPU_FREQ_GOV_LULZACTIVEQ
-	help
+config CPU_FREQ_DEFAULT_GOV_HOTPLUGX	
+        bool "hotplugx"
+        select CPU_FREQ_GOV_HOTPLUGX	
+        help
+         If in doubt, say N.
 
 config CPU_FREQ_DEFAULT_GOV_INTERACTIVEX
        bool "interactiveX"
@@ -202,6 +204,12 @@ config CPU_FREQ_DEFAULT_GOV_HYPER
 config CPU_FREQ_DEFAULT_GOV_LULZACTIVEQ
 	bool "lulzactiveq"
 	select CPU_FREQ_GOV_LULZACTIVEQ
+
+config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
+	bool "smartassH3"
+	select CPU_FREQ_GOV_SMARTASSH3
+	help
+	 Use the CPUFreq governor 'SmartassH3' as default.
 
 config CPU_FREQ_DEFAULT_GOV_LIONHEART
         bool "lionheart"
@@ -311,14 +319,6 @@ config CPU_FREQ_GOV_SMARTASS2
        depends on CPU_FREQ
        help
          'smartassV2' - a "smart" optimized governor for the pyra!
-         
-config CPU_FREQ_GOV_SMARTASSH3
-       tristate "'SmartassH3' cpufreq governor"
-       depends on CPU_FREQ
-       help
-         'SmartassH3' - a "smartassV2 with tweaks by H3ROS" governor!
-
-    If in doubt, say N.
 
 config CPU_FREQ_GOV_INTERACTIVE
        tristate "'interactive' cpufreq policy governor"
@@ -365,6 +365,12 @@ config CPU_FREQ_GOV_MINMAX
 
 	  If in doubt, say N.
 
+config CPU_FREQ_GOV_INTELLIDEMAND
+	tristate "'intellidemand' cpufreq governor"
+	depends on CPU_FREQ
+	help
+	  'intellidemand' - an intelligent ondemand governor
+
 config CPU_FREQ_GOV_HOTPLUG
        tristate "'hotplug' cpufreq governor"
        depends on CPU_FREQ && NO_HZ && HOTPLUG_CPU
@@ -384,6 +390,11 @@ config CPU_FREQ_GOV_HOTPLUG
          'ondemand' instead.
 
          If in doubt, say N.
+
+config CPU_FREQ_GOV_HOTPLUGX
+        tristate "'hotplugx' cpufreq governor"
+        depends on CPU_FREQ
+        help
 
 config CPU_FREQ_GOV_HYPER
         tristate "'HYPER' cpufreq governor"
@@ -414,11 +425,11 @@ config CPU_FREQ_GOV_LULZACTIVEQ
 config CPU_FREQ_GOV_SLP
 	tristate "'slp' cpufreq policy governor"
 
-config CPU_FREQ_GOV_LULZACTIVEQ
-	tristate "'lulzactiveq' cpufreq governor"
+config CPU_FREQ_GOV_SMARTASSH3
+	tristate "'SmartassH3' cpufreq governor"
 	depends on CPU_FREQ
-	---help---
-	  'lulzactiveq' - NEW hotplug mechanism added in lulzactive
+	help
+	 'SmartassH3' - a "smartassV2 with tweaks by H3ROS" governor!
 	   
 config CPU_FREQ_GOV_LIONHEART
         tristate "'lionheart' cpufreq governor"
